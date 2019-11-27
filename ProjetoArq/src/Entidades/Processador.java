@@ -11,7 +11,7 @@ public class Processador {
 		super();
 		this.core1 = new Core();
 		this.core2 = new Core();
-		this.cache = new Cache(200);
+		this.cache = new Cache(100);
 	}
 	
 	public Core getCore1() {

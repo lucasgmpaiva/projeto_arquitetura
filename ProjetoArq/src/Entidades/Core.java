@@ -5,7 +5,7 @@ public class Core {
 	private Cache cache;
 	
 	public Core() {
-		this.cache = new Cache(100);
+		this.cache = new Cache(50);
 	}
 
 	public Core(Cache cache) {
