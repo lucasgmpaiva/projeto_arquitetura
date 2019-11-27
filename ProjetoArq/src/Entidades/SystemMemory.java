@@ -1,11 +1,14 @@
 package Entidades;
 
-
-
 public class SystemMemory {
 	
 private int[] memoria;
 	
+	public SystemMemory() {
+		super();
+		this.memoria = new int[200];
+	}
+
 	public SystemMemory (int tamanho) {
 		this.memoria = new int[tamanho];
 	}

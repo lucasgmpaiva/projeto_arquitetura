@@ -1,6 +1,6 @@
 package Entidades;
 
-
+import java.util.Scanner;
 
 public class Core {
 	
@@ -23,6 +23,22 @@ public class Core {
 		this.cache = cache;
 	}
 	
-	
+	public void processar(int posicao) {
+		Scanner teclado = new Scanner(System.in);
+		System.out.println("1 - Ler");
+		System.out.println("2 - Escrever");
+		int opcao = teclado.nextInt();
+		switch (opcao) {
+		case 1:
+			System.out.println(cache.getDado(posicao));
+			break;
+		case 2:
+			System.out.println("");
+			break;
+		default:
+			System.out.println("Ta zuado, man");
+			break;
+		}
+	}
 
 }
