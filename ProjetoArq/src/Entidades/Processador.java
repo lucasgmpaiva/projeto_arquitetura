@@ -1,5 +1,7 @@
 package Entidades;
 
+
+
 public class Processador {
 	
 	private Core core1;

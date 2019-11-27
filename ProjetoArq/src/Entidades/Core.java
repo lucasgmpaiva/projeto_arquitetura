@@ -1,5 +1,7 @@
 package Entidades;
 
+
+
 public class Core {
 	
 	private Cache cache;

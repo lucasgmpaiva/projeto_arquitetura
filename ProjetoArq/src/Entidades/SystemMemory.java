@@ -1,5 +1,7 @@
 package Entidades;
 
+
+
 public class SystemMemory {
 	
 private int[] memoria;
