@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import Entidades.Cache;
 import Entidades.Core;
 import Entidades.Processador;
 import Entidades.SystemMemory;
@@ -18,11 +19,11 @@ public class Main {
 		} else {
 			quantidade = quantidade/2;
 			Processador processadores[] = new Processador[quantidade];
-			for(Processador processador : processadores) {
-				processador = new Processador();
-				System.out.println(processador.getCache().getDado(0));
+			for(int i = 0; i < quantidade; i++) {
+				processadores[i] = new Processador();
+				System.out.println(processadores[i].getCache().getDado(0));
 			}
-			SystemMemory memoriaPrincipal = new SystemMemory();
+			Cache memoriaPrincipal = new Cache(200);
 			
 			for (int i = 0; i < memoriaPrincipal.getMemoria().length; i++) {
 				memoriaPrincipal.getMemoria()[i] = i;
@@ -48,7 +49,7 @@ public class Main {
 		}
 	}
 	
-	public static void iniciarProcessamento(Processador[] processadores, SystemMemory memoriaPrincipal) {
+	public static void iniciarProcessamento(Processador[] processadores, Cache memoriaPrincipal) {
 		Scanner teclado = new Scanner(System.in);
 		System.out.println("Informe a posição de memória: ");
 		int posicao = teclado.nextInt();
@@ -68,6 +69,9 @@ public class Main {
 			int dado = memoriaPrincipal.getDado(posicao);
 			processador.getCache().adicionarDado(dado);
 			coreUtilizado.getCache().adicionarDado(dado);
+			coreUtilizado.processar();
+			processador.atualizar(coreUtilizado.getCache().getLast());
+			memoriaPrincipal.updateLast(coreUtilizado.getCache().getLast());
 			if(core%2 == 0) {
 				processador.setCore1(coreUtilizado);
 			} else {
