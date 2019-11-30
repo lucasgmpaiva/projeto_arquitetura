@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import Entidades.Cache;
@@ -10,43 +12,52 @@ public class Main {
 	public static void main(String[] args) {
 			
 		Scanner teclado = new Scanner(System.in);
-		
-		System.out.println("Insira a quantidade de cores (múltiplo de dois)");
-		int quantidade  = teclado.nextInt();
-		
-		if(quantidade%2 != 0) {
-			System.out.println("You cego, fela da puta?");
-		} else {
-			quantidade = quantidade/2;
-			Processador processadores[] = new Processador[quantidade];
-			for(int i = 0; i < quantidade; i++) {
-				processadores[i] = new Processador();
-				System.out.println(processadores[i].getCache().getDado(0));
-			}
-			Cache memoriaPrincipal = new Cache(200);
+		try {
+			Scanner arquivo = new Scanner (new File("dados/arquivodados"));
+			System.out.println("Insira a quantidade de cores (múltiplo de dois)");
+			int quantidade  = teclado.nextInt();
 			
-			for (int i = 0; i < memoriaPrincipal.getMemoria().length; i++) {
-				memoriaPrincipal.getMemoria()[i] = i;
-			}
-			int opcao = 0;
-			do {
-				System.out.println("0 - Sair do programa");
-				System.out.println("1 - Carregar dado");
-				opcao = teclado.nextInt();
-				switch (opcao) {
-				case 0:
-					System.out.println("Bye, bye :D");
-					break;
-				case 1:
-					iniciarProcessamento(processadores, memoriaPrincipal);
-					break;
-				default:
-					System.out.println("Opção inválida!");
-					break;
+			if(quantidade%2 != 0) {
+				System.out.println("You cego, fela da puta?");
+			} else {
+				quantidade = quantidade/2;
+				Processador processadores[] = new Processador[quantidade];
+				for(int i = 0; i < quantidade; i++) {
+					processadores[i] = new Processador();
 				}
-			} while (opcao != 0);
-			
+				Cache memoriaPrincipal = new Cache(200);
+				
+				for (int i = 0; i < memoriaPrincipal.getMemoria().length; i++) {
+					memoriaPrincipal.getMemoria()[i] = arquivo.nextInt();
+					
+				}
+				for (int i = 0; i < memoriaPrincipal.getMemoria().length; i++) {
+					System.out.println(memoriaPrincipal.getMemoria()[i]);
+					
+				}
+				int opcao = 0;
+				do {
+					System.out.println("0 - Sair do programa");
+					System.out.println("1 - Carregar dado");
+					opcao = teclado.nextInt();
+					switch (opcao) {
+					case 0:
+						System.out.println("Bye, bye :D");
+						break;
+					case 1:
+						iniciarProcessamento(processadores, memoriaPrincipal);
+						break;
+					default:
+						System.out.println("Opção inválida!");
+						break;
+					}
+				} while (opcao != 0);
+				
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
+		
 	}
 	
 	public static void iniciarProcessamento(Processador[] processadores, Cache memoriaPrincipal) {
