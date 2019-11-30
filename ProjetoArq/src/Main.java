@@ -31,10 +31,6 @@ public class Main {
 					memoriaPrincipal.getMemoria()[i] = arquivo.nextInt();
 					
 				}
-				for (int i = 0; i < memoriaPrincipal.getMemoria().length; i++) {
-					System.out.println(memoriaPrincipal.getMemoria()[i]);
-					
-				}
 				int opcao = 0;
 				do {
 					System.out.println("0 - Sair do programa");
