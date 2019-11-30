@@ -2,7 +2,8 @@ package Entidades;
 
 public class SystemMemory {
 	
-private int[] memoria;
+	private int[] memoria;
+	private int ultimoAtt = 0;
 	
 	public SystemMemory() {
 		super();
@@ -27,7 +28,21 @@ private int[] memoria;
 	}
 	
 	public int getDado(int posicao) {
+		ultimoAtt = posicao+1;
 		return memoria[posicao];
+	}
+	public int getLast() {
+		return memoria[ultimoAtt-1];
+	}
+	public void updateLast(int novo) {
+		memoria[ultimoAtt-1] = novo;
+	}
+	public void adicionarDado(int dado) {
+		if(ultimoAtt == memoria.length) {
+			ultimoAtt = 0;
+		}
+		memoria[ultimoAtt] = dado;
+		ultimoAtt++;
 	}
 
 }
