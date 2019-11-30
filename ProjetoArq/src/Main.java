@@ -51,7 +51,7 @@ public class Main {
 				
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("Arquivo de dados não foi encontrado! D:");
 		}
 		
 	}
