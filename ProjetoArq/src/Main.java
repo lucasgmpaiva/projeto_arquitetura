@@ -6,6 +6,7 @@ import Entidades.Cache;
 import Entidades.Core;
 import Entidades.Processador;
 import Entidades.SystemMemory;
+import utilities.Utilitario;
 
 public class Main {
 	
@@ -28,8 +29,15 @@ public class Main {
 				SystemMemory memoriaPrincipal = new SystemMemory();
 				
 				for (int i = 0; i < memoriaPrincipal.getMemoria().length; i++) {
-					memoriaPrincipal.getMemoria()[i] = arquivo.nextInt();
-					
+					if(arquivo.hasNext()) {
+						memoriaPrincipal.getMemoria()[i] = arquivo.nextInt();
+					} else if (!arquivo.hasNext() && i == 0) {
+						Integer[] arrayInicial = new Integer[200];
+						for(int j = 0; j < memoriaPrincipal.getMemoria().length; j++) {
+							arrayInicial[j] = j+1;
+						}
+						Utilitario.escreverNoArquivo(arrayInicial);
+					}
 				}
 				int opcao = 0;
 				do {
@@ -79,6 +87,7 @@ public class Main {
 			coreUtilizado.processar();
 			processador.atualizar(coreUtilizado.getCache().getLast());
 			memoriaPrincipal.updateLast(coreUtilizado.getCache().getLast());
+			Utilitario.escreverNoArquivo(memoriaPrincipal.getMemoria());
 			if(core%2 == 0) {
 				processador.setCore1(coreUtilizado);
 			} else {
