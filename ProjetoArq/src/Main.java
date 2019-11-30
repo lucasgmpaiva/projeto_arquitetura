@@ -25,7 +25,7 @@ public class Main {
 				for(int i = 0; i < quantidade; i++) {
 					processadores[i] = new Processador();
 				}
-				Cache memoriaPrincipal = new Cache(200);
+				SystemMemory memoriaPrincipal = new SystemMemory();
 				
 				for (int i = 0; i < memoriaPrincipal.getMemoria().length; i++) {
 					memoriaPrincipal.getMemoria()[i] = arquivo.nextInt();
@@ -56,7 +56,7 @@ public class Main {
 		
 	}
 	
-	public static void iniciarProcessamento(Processador[] processadores, Cache memoriaPrincipal) {
+	public static void iniciarProcessamento(Processador[] processadores, SystemMemory memoriaPrincipal) {
 		Scanner teclado = new Scanner(System.in);
 		System.out.println("Informe a posição de memória: ");
 		int posicao = teclado.nextInt();
