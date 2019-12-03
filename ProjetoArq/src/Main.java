@@ -71,7 +71,7 @@ public class Main {
 			final JPanel panel = new JPanel();
 		    JOptionPane.showMessageDialog(panel, "Posição de memória inválida!", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
-			int core = Integer.parseInt(JOptionPane.showInputDialog("Qual core deseja utilizar?"));
+			int core = Integer.parseInt(JOptionPane.showInputDialog("Qual core deseja utilizar? (Inicia em 0)"));
 			int proce = core/2;
 			Processador processador = processadores[proce];
 			Core coreUtilizado;
