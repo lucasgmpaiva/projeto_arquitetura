@@ -81,7 +81,9 @@ public class Main {
 				coreUtilizado = processador.getCore2();
 			}
 			int dado = memoriaPrincipal.getDado(posicao);
+			//Adicionando na L2
 			processador.getCache().adicionarDado(dado);
+			//Adicionando na L1
 			coreUtilizado.getCache().adicionarDado(dado);
 			coreUtilizado.processar();
 			processador.atualizar(coreUtilizado.getCache().getLast());
