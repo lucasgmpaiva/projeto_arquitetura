@@ -2,6 +2,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import Entidades.Cache;
 import Entidades.Core;
 import Entidades.Processador;
@@ -12,14 +15,13 @@ public class Main {
 	
 	public static void main(String[] args) {
 			
-		Scanner teclado = new Scanner(System.in);
 		try {
 			Scanner arquivo = new Scanner (new File("dados/arquivodados"));
-			System.out.println("Insira a quantidade de cores (mÃºltiplo de dois)");
-			int quantidade  = teclado.nextInt();
+			int quantidade = Integer.parseInt(JOptionPane.showInputDialog("Informe a quantidade de cores:"));
 			
-			if(quantidade%2 != 0) {
-				System.out.println("You cego, fela da puta?");
+			if(quantidade%2 != 0 || quantidade == 0 || quantidade < 0) {
+				final JPanel panel = new JPanel();
+			    JOptionPane.showMessageDialog(panel, "Quantidade de cores inválida!\nEncerrando!", "Error", JOptionPane.ERROR_MESSAGE);
 			} else {
 				quantidade = quantidade/2;
 				Processador processadores[] = new Processador[quantidade];
@@ -34,45 +36,42 @@ public class Main {
 					} else if (!arquivo.hasNext() && i == 0) {
 						Integer[] arrayInicial = new Integer[200];
 						for(int j = 0; j < memoriaPrincipal.getMemoria().length; j++) {
-							arrayInicial[j] = j+1;
+							arrayInicial[j] = j;
 						}
 						Utilitario.escreverNoArquivo(arrayInicial);
 					}
 				}
 				int opcao = 0;
 				do {
-					System.out.println("0 - Sair do programa");
-					System.out.println("1 - Carregar dado");
-					opcao = teclado.nextInt();
+					opcao = Integer.parseInt(JOptionPane.showInputDialog("0 - Sair do programa" + "\n" + "1 - Carregar dado"));
 					switch (opcao) {
 					case 0:
-						System.out.println("Bye, bye :D");
+						JOptionPane.showMessageDialog(null, "Bye, bye! :D");
 						break;
 					case 1:
 						iniciarProcessamento(processadores, memoriaPrincipal);
 						break;
 					default:
-						System.out.println("OpÃ§Ã£o invÃ¡lida!");
+						JOptionPane.showMessageDialog(null, "Opção Inválida!");
 						break;
 					}
 				} while (opcao != 0);
 				
 			}
 		} catch (FileNotFoundException e) {
-			System.out.println("Arquivo de dados não foi encontrado! D:");
+			final JPanel panel = new JPanel();
+		    JOptionPane.showMessageDialog(panel, "Arquivo não encontrado!\nEncerrando!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}
 	
 	public static void iniciarProcessamento(Processador[] processadores, SystemMemory memoriaPrincipal) {
-		Scanner teclado = new Scanner(System.in);
-		System.out.println("Informe a posiÃ§Ã£o de memÃ³ria: ");
-		int posicao = teclado.nextInt();
-		System.out.println("Qual core deseja utilizar?");
-		int core = teclado.nextInt();
+		int posicao = Integer.parseInt(JOptionPane.showInputDialog("Informe a posição de memória:"));
 		if(posicao > 200) {
-			System.out.println("PosiÃ§Ã£o de memÃ³ria invÃ¡lida!");
+			final JPanel panel = new JPanel();
+		    JOptionPane.showMessageDialog(panel, "Posição de memória inválida!", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
+			int core = Integer.parseInt(JOptionPane.showInputDialog("Qual core deseja utilizar?"));
 			int proce = core/2;
 			Processador processador = processadores[proce];
 			Core coreUtilizado;

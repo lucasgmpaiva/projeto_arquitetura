@@ -2,6 +2,9 @@ package Entidades;
 
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 public class Core {
 	
 	private Cache cache;
@@ -24,21 +27,18 @@ public class Core {
 	}
 	
 	public boolean processar() {
-		Scanner teclado = new Scanner(System.in);
-		System.out.println("1 - Ler");
-		System.out.println("2 - Escrever");
-		int opcao = teclado.nextInt();
+		int opcao = Integer.parseInt(JOptionPane.showInputDialog("1 - Ler" + "\n" + "2 - Escrever"));
 		switch (opcao) {
 		case 1:
-			System.out.println("Dado armazenado: " + cache.getLast());
+			JOptionPane.showMessageDialog(null, "Dado armazenado: " + cache.getLast());
 			return false;
 		case 2:
-			System.out.println("Insira o novo valor");
-			int novo = teclado.nextInt();
+			int novo = Integer.parseInt(JOptionPane.showInputDialog("Informe o novo valor!"));
 			cache.updateLast(novo);
 			return true;
 		default:
-			System.out.println("Ta zuado, man");
+			final JPanel panel = new JPanel();
+		    JOptionPane.showMessageDialog(panel, "Opção inválida!", "Error", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 	}
