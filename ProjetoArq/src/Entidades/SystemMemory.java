@@ -8,6 +8,9 @@ public class SystemMemory {
 	public SystemMemory() {
 		super();
 		this.memoria = new Integer[200];
+		for (int i = 0; i < memoria.length; i++) {
+			memoria[i] = 0;
+		}
 	}
 
 	public SystemMemory (int tamanho) {
