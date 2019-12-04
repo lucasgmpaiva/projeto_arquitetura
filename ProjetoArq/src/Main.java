@@ -23,7 +23,7 @@ public class Main {
 			
 			if(quantidade%2 != 0 || quantidade == 0 || quantidade < 0) {
 				final JPanel panel = new JPanel();
-			    JOptionPane.showMessageDialog(panel, "Quantidade de cores inválida!\nEncerrando!", "Error", JOptionPane.ERROR_MESSAGE);
+			    JOptionPane.showMessageDialog(panel, "Quantidade de cores invalida!\nEncerrando!", "Error", JOptionPane.ERROR_MESSAGE);
 			} else {
 				quantidade = quantidade/2;
 				Processador processadores[] = new Processador[quantidade];
