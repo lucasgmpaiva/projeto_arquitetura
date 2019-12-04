@@ -54,7 +54,7 @@ public class Main {
 						iniciarProcessamento(processadores, memoriaPrincipal);
 						break;
 					default:
-						JOptionPane.showMessageDialog(null, "Opção Inválida!");
+						JOptionPane.showMessageDialog(null, "Opcao Invalida!");
 						break;
 					}
 				} while (opcao != 0);
@@ -63,16 +63,16 @@ public class Main {
 			}
 		} catch (FileNotFoundException e) {
 			final JPanel panel = new JPanel();
-		    JOptionPane.showMessageDialog(panel, "Arquivo não encontrado!\nEncerrando!", "Error", JOptionPane.ERROR_MESSAGE);
+		    JOptionPane.showMessageDialog(panel, "Arquivo nao encontrado!\nEncerrando!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}
 	
 	public static void iniciarProcessamento(Processador[] processadores, SystemMemory memoriaPrincipal) {
-		int posicao = Integer.parseInt(JOptionPane.showInputDialog("Informe a posição de memória:"));
+		int posicao = Integer.parseInt(JOptionPane.showInputDialog("Informe a posicao de memoria:"));
 		if(posicao > 200) {
 			final JPanel panel = new JPanel();
-		    JOptionPane.showMessageDialog(panel, "Posição de memória inválida!", "Error", JOptionPane.ERROR_MESSAGE);
+		    JOptionPane.showMessageDialog(panel, "Posicao de memoria invalida!", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
 			int core = Integer.parseInt(JOptionPane.showInputDialog("Qual core deseja utilizar? (Inicia em 0)"));
 			int proce = core/2;

@@ -36,7 +36,7 @@ public class Core {
 			return true;
 		default:
 			final JPanel panel = new JPanel();
-		    JOptionPane.showMessageDialog(panel, "Opção inválida!", "Error", JOptionPane.ERROR_MESSAGE);
+		    JOptionPane.showMessageDialog(panel, "Opcao invalida!", "Error", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 	}
