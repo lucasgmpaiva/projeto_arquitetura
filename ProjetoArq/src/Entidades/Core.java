@@ -1,7 +1,5 @@
 package Entidades;
 
-import java.util.Scanner;
-
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 

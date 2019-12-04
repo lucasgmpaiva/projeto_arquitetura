@@ -1,11 +1,13 @@
+import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
-import Entidades.Cache;
 import Entidades.Core;
 import Entidades.Processador;
 import Entidades.SystemMemory;
@@ -57,6 +59,7 @@ public class Main {
 					}
 				} while (opcao != 0);
 				
+				arquivo.close();				
 			}
 		} catch (FileNotFoundException e) {
 			final JPanel panel = new JPanel();
@@ -95,6 +98,37 @@ public class Main {
 				processador.setCore2(coreUtilizado);
 			}
 			processadores[proce] = processador;
+			
+			String memoriaProcessador = "";
+			String memoriaCache = "";
+			
+			for (int i = 0; i < processador.getCache().getMemoria().length; i++) {
+				if((i+1)%5==0 && i !=0) {
+					memoriaProcessador += "[" + processador.getCache().getMemoria()[i] + "]" + "\n";
+				} else {
+					memoriaProcessador += "[" + processador.getCache().getMemoria()[i] + "]" + " ";
+				}
+			}
+			
+			for (int i = 0; i < coreUtilizado.getCache().getMemoria().length; i++) {
+				if((i+1)%5==0 && i !=0) {
+					memoriaCache += "[" + coreUtilizado.getCache().getMemoria()[i] + "]" + "\n";
+				} else {
+					memoriaCache += "[" + coreUtilizado.getCache().getMemoria()[i] + "]" + " ";
+				}
+			}
+			JTextArea textArea = new JTextArea("CACHE L2\n" + memoriaProcessador);
+			JScrollPane scrollPane = new JScrollPane(textArea);
+			textArea.setLineWrap(true);
+			textArea.setWrapStyleWord(true);
+			scrollPane.setPreferredSize( new Dimension( 300, 300 ) );
+			JOptionPane.showMessageDialog(null, scrollPane, "Memoria Processador", JOptionPane.WARNING_MESSAGE);
+			JTextArea textArea1 = new JTextArea("CACHE L1\n" + memoriaCache);
+			JScrollPane scrollPane1 = new JScrollPane(textArea1);
+			textArea.setLineWrap(true);
+			textArea.setWrapStyleWord(true);
+			scrollPane.setPreferredSize( new Dimension( 500, 500 ) );
+		    JOptionPane.showMessageDialog(null, scrollPane1, "Memoria do core", JOptionPane.WARNING_MESSAGE);
 			
 		}
 	}
